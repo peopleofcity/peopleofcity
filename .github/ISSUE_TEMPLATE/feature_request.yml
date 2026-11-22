@@ -1,6 +1,6 @@
-name: Idea
-description: Something the city should have
-labels: [idea]
+name: Feature request
+description: Something the foundation should have
+labels: [enhancement]
 body:
   - type: textarea
     attributes: { label: The idea, description: "What should be possible, and why it makes the city better to walk through." }

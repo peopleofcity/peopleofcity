@@ -24,8 +24,8 @@ export const SITE_TITLE = 'People of Bengaluru — walk the city, meet its desig
 export const SITE_DESCRIPTION =
   'A stylised 3D Bengaluru you can walk through. Every character is a real designer or builder: find them in Koramangala and HSR Layout, see what they’re building, and say hi.'
 
-/** Google Analytics 4 measurement ID. Loads only on production (see ANALYTICS_ON). */
-export const GA_ID = 'G-EEGWQWP5NM'
+/** Google Analytics 4 measurement ID, e.g. 'G-XXXXXXXXXX'. Empty: no analytics. Loads only on production (see ANALYTICS_ON). */
+export const GA_ID = ''
 
 /**
  * True only on the Vercel production deployment (peopleofbengaluru.com). Dev, previews and local

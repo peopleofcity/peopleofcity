@@ -1,8 +1,11 @@
 blank_issues_enabled: false
 contact_links:
-  - name: Show us your city
+  - name: Ask a question
     url: https://github.com/peopleofcity/peopleofcity/discussions
-    about: Built People of your city? Share it in Discussions.
+    about: Questions about setting up or building your city go to Discussions.
+  - name: Showcase your city
+    url: https://github.com/peopleofcity/peopleofcity/blob/main/SUBMISSIONS.md
+    about: Built People of your city? Here's how to share it.
   - name: Report a security issue
     url: https://github.com/peopleofcity/peopleofcity/security/advisories/new
     about: Privately, never in a public issue.

@@ -1,5 +1,7 @@
 ## What this changes
 
+<!-- Improvements to the shared foundation belong here. A change only your own city needs belongs in your fork (CONTRIBUTING.md). -->
+
 <!-- One or two sentences. Link the issue it closes: "Closes #12". -->
 
 ## How you checked it

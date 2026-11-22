@@ -17,3 +17,8 @@ skills-lock.json
 
 # email templates to paste into Resend and Supabase, local only
 /emails/
+
+# deploy tooling, local state
+.vercel
+.wrangler/
+.dev.vars
