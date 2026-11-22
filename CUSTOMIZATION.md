@@ -238,7 +238,7 @@ The links a profile can show are `links: { portfolio?, linkedin?, x? }` in the `
 
 ### What people come to do
 
-The reasons to connect are in **`src/lib/intents.ts`**: `☕ GRAB COFFEE`, `🤝 WORK TOGETHER`, `🧠 EXCHANGE IDEAS`, `🚀 BUILD SOMETHING`, `🎉 HANG OUT`. If you use a database, the connect functions there must accept the same ids.
+The reasons to connect are in **`src/lib/intents.ts`**: `☕ GRAB COFFEE`, `🤝 WORK TOGETHER`, `🧠 EXCHANGE IDEAS`, `🚀 BUILD SOMETHING`, `🎉 HANG OUT`. The database accepts the same ids: if you change them, update the `intent` check in `supabase/migrations/20261007110614_connections.sql` (and `supabase/schema.sql`).
 
 ---
 

@@ -121,19 +121,22 @@ Server code in `src/lib/server/` uses the Supabase **secret key** and never runs
 
 ### Database
 
-The schema isn't published in this repository. The code uses:
+The starter database is in **`supabase/`**: `migrations/` (the steps, in order) and `schema.sql` (the same, as one file). It has 10 tables, all with row-level security on:
 
-- **Tables:** `profiles`, `applications`, `member_settings`, `app_settings`, `reports`, `admins`
+- **Read by the app directly** (row-level security decides what each person sees): `profiles`, `applications`, `member_settings`, `app_settings`, `reports`, `admins`
+- **Closed to the app**, reached only through database functions: `invites`, `connections`, `messages`, `blocks`
 - **Database functions** (called with `.rpc()`, security-definer, guarding everything with row-level security):
   - Invites: `check_invite`, `redeem_invite`, `my_invites`, `create_invite_link`
   - Applications: `submit_application`, `submit_application_for`, `approve_application`
-  - Connect and chat: `withdraw_connect`, `remove_connect`, `mark_connections_seen`, `send_message`, `thread_messages`, `mark_read`, `chat_digest_due`, `chat_mark_emailed`
+  - Connect and chat: `send_connect_v2`, `respond_connect_v2`, `my_connections_v2`, `withdraw_connect`, `remove_connect`, `mark_connections_seen`, `send_message`, `thread_messages`, `mark_read`, `chat_digest_due`, `chat_mark_emailed`
   - Safety: `block_member`, `report_member`
   - Admin: `is_admin`, `admin_issue_invites`, `admin_founder_invites`, `admin_set_invite_note`, `admin_revoke_invite`, `admin_resolve_report`
 - **Realtime:** one private channel per person, `user:<id>`, for new messages and connect updates.
 - **Auth:** sign-in with a six-digit email code (`signInWithOtp` / `verifyOtp`).
 
 Admins are people listed in the `admins` table, checked with `is_admin()`.
+
+**Not in the starter database:** the scheduled job that runs the unread-message reminders (`/api/cron/chat-digest`). It needs Supabase's `pg_cron` and `pg_net` extensions and a real email provider; until you add both, there's nothing for it to send.
 
 ## External services
 

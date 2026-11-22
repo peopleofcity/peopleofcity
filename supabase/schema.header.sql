@@ -1,0 +1,7 @@
+-- People of City · starter database (one file)
+--
+-- Every table, row-level security policy and database function the foundation uses, with no data.
+-- Paste it into your Supabase project's SQL editor (Database → SQL editor) and run it once.
+--
+-- Generated from supabase/migrations/ (the source of truth), in order. To regenerate after editing them:
+--   (cat supabase/schema.header.sql; for f in supabase/migrations/*.sql; do echo; echo "-- ==== $f"; cat "$f"; done) > supabase/schema.sql

@@ -13,6 +13,7 @@ The first public release: the open foundation of People of Bengaluru, as of 10 N
 - Documentation: README, [ARCHITECTURE.md](ARCHITECTURE.md), [CUSTOMIZATION.md](CUSTOMIZATION.md), [CONTRIBUTING.md](CONTRIBUTING.md), [SUBMISSIONS.md](SUBMISSIONS.md), Code of Conduct and security policy.
 - Issue forms, a pull request template, code owners, and CI checks on every pull request.
 - Fillers for email (`src/lib/server/email/send.ts`) and payments (`src/lib/server/dodo.ts`), so the foundation runs without either.
+- A starter database (`supabase/schema.sql`, `supabase/migrations/`): every table, row-level security policy and function the app uses, with no data.
 
 ### Included from People of Bengaluru
 - A walkable, stylised 3D city: Koramangala 5th Block and HSR Layout, with portal travel between them.
@@ -23,7 +24,7 @@ The first public release: the open foundation of People of Bengaluru, as of 10 N
 - The live city: real-time positions through a Cloudflare Workers server (`realtime/`).
 
 ### Not included
-- People of Bengaluru's database schema, email templates and sending, and payments.
+- People of Bengaluru's data, email templates and sending, payments, and the scheduled reminder job.
 
 ### Changed
 - Analytics are off by default (`GA_ID` is empty in `src/lib/site.ts`).

@@ -89,7 +89,7 @@ Everything here exists in this codebase today.
 
 ### Not included
 
-People of Bengaluru's database schema, its email templates and sending, and its payments are not part of this repository. Small **fillers** stand in for email (`src/lib/server/email/send.ts`) and payments (`src/lib/server/dodo.ts`). They send nothing, so you can plug in your own.
+People of Bengaluru's email templates and sending, and its payments, are not part of this repository. Small **fillers** stand in for email (`src/lib/server/email/send.ts`) and payments (`src/lib/server/dodo.ts`). They send nothing, so you can plug in your own.
 
 See the [Roadmap](#roadmap) for what's planned.
 
@@ -144,7 +144,18 @@ cp .env.example .env.local
 
 The social layer runs on **Supabase**: Postgres with row-level security, Auth (email codes), and Realtime (private per-user channels).
 
-> **Heads-up:** the database schema is not published in this repository yet. The code shows exactly what it uses: the tables `profiles`, `applications`, `member_settings`, `app_settings`, `reports` and `admins`, plus the database functions listed in [ARCHITECTURE.md](ARCHITECTURE.md#database). Until a reference schema ships, you'll design these tables yourself. Keep row-level security on for every table.
+This repository ships a **starter database**: every table, privacy rule and database function the app uses, with no data.
+
+1. Create a free project at [supabase.com](https://supabase.com), and copy its URL and keys into `.env.local` (Project Settings → API).
+2. Open **SQL Editor**, paste the whole of [`supabase/schema.sql`](supabase/schema.sql), and run it once. *(Using the Supabase CLI? The same steps are in order in `supabase/migrations/`, so `supabase db push` works too.)*
+3. **Turn on sign-in codes:** under **Authentication → Emails**, make the *Magic Link* template show the code, e.g. `Your code is {{ .Token }}`. The game asks for the six-digit code, not a link.
+4. **Make yourself the first admin.** Sign-in never creates accounts (people join through an invite or an application), so create yours by hand: **Authentication → Users → Add user**, with your email and *Auto Confirm User* ticked. Then run in the SQL Editor:
+   ```sql
+   insert into public.admins (user_id) select id from auth.users where email = 'you@example.com';
+   ```
+5. **Open the admin** at **http://admin.localhost:3000** (or `/admin`), sign in with your email code, and issue your first invite codes. Use one yourself in the game (`?invite=CODE`) to become the city's first resident.
+
+Restart `npm run dev`, and sign-in, invites, applications, profiles, connect and chat all work. The schema was tested end to end (invites, joining, connecting, chatting, and strangers being kept out of other people's chats and applications).
 
 ### 5. The live city (optional)
 
@@ -210,11 +221,10 @@ Improvements to the underlying foundation (graphics, gameplay, environments and 
 - Day and night on the real clock, generative music and ambience
 - Characters, name plates, sample residents, and find-someone search
 - Desktop and touch controls
-- With Supabase: email-code sign-in, invites, applications and admin review, profiles, status, connect and chat, Day Zero missions
+- With Supabase (starter database included): email-code sign-in, invites, applications and admin review, profiles, status, connect and chat, Day Zero missions
 - With the realtime server: the live city (who's online, live positions)
 
 **Currently exploring**
-- A published reference database schema, so the social layer works out of the box
 - A single city config file, so a new city starts from one file instead of many
 - Clearer extension points for districts and landmarks
 
